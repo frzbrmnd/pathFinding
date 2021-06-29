@@ -1,0 +1,307 @@
+MAP
+    NAME           "my_map"     
+    CONFIG         "PROJ_LIB" "C:/ms4w/proj/nad"
+    DEBUG          5   
+    UNITS          dd
+    IMAGETYPE      PNG
+    EXTENT         50.8 34.8 51.3 35.2
+    SIZE           1150 560
+    SHAPEPATH      "./data"
+    IMAGECOLOR     255 255 255
+    PROJECTION
+        "init=epsg:4326"
+    END
+
+    SYMBOL
+        NAME "vertline"
+        TYPE vector
+        FILLED true
+        POINTS
+            0 0
+            0 10
+            2.8 10
+            2.8 0
+            0 0
+        END
+        ANCHORPOINT 0.5 0
+    END
+
+################################################################################
+    WEB
+        TEMPLATE "MST.html"
+        IMAGEPATH "/ms4w/tmp/ms_tmp/"
+        IMAGEURL "/ms_tmp/"
+        METADATA
+            "wms_title" "My MAP"
+            "wms_onlineresource" "http://localhost:8080/cgi-bin/mapserv.exe?"
+            "WMS_ENABLE_REQUEST" "*"
+            "WMS_FEATURE_INFO_MIME_TYPE" "text/html"
+            #"WMS_INFO_FORMAT" "text/html"
+            "WMS_INFO_FORMAT" "text/plain"
+            "wms_srs" "EPSG:4326"
+        END # METAD
+    END 
+
+################################################################################
+    LAYER
+        NAME		 'earth'
+	DATA		 'earth.tif'
+	STATUS       DEFAULT
+	TYPE         RASTER
+        METADATA
+            "wms_title"  	"background aerial image"
+            "wms_include_items" "all"
+        END
+        TEMPLATE "layer1tmp.html"
+	PROJECTION
+            "init=epsg:4326"
+	END 
+    END 
+
+################################################################################
+    LAYER
+        NAME		 'landuse'
+        DATA		 'landuse.shp'
+        STATUS       ON
+        TYPE         POLYGON
+        PROJECTION
+            "init=epsg:4326"
+        END
+        CLASSITEM    "USEFARSI"
+        METADATA
+            "wms_title"  	"landuse information"
+            "wms_include_items" "all"
+        END
+        TEMPLATE "layer2tmp.html"
+        CLASS
+            NAME       "Agricultural"
+            EXPRESSION 'زراعی'
+            STYLE
+                COLOR    110 240 9
+            END
+        END
+		
+        CLASS
+            NAME       "Rock"
+            EXPRESSION 'رخنمون سنگي'
+            STYLE
+                COLOR    70 30 50
+            END
+        END
+
+        CLASS
+            NAME       "Salt Lake"
+            EXPRESSION 'درياچه نمك'
+            STYLE
+                COLOR    190 240 244
+            END
+        END
+
+        CLASS
+            NAME       "Swamp"
+            EXPRESSION 'اراضي باطلاقي و ماندا'
+            STYLE
+                COLOR    36 31 27
+            END
+        END
+
+        CLASS
+            NAME       "Salty Lands"
+            EXPRESSION 'اراضي شور'
+            STYLE
+                COLOR    251 248 238
+            END
+        END
+
+        CLASS
+            NAME       "Wasteland"
+            EXPRESSION 'اراضي فاقد پوشش گياهي'
+            STYLE
+                COLOR    159 137 105
+            END
+        END
+
+        CLASS
+            NAME       "Urban Area"
+            EXPRESSION 'محدوده شهر'
+            STYLE
+                COLOR    171 171 171
+            END
+        END
+
+        CLASS
+            NAME       "Grassland"
+            EXPRESSION 'مرتع'
+            STYLE
+                COLOR    115 175 16
+            END
+        END
+
+        CLASS
+            NAME       "Wetland"
+            EXPRESSION 'هور و تالاب'
+            STYLE
+                COLOR    18 137 206
+            END
+        END
+    END
+
+
+################################################################################
+    LAYER
+        NAME		 'rivers'
+        DATA		 'rivers.shp'
+        STATUS       ON
+        TYPE         LINE
+        METADATA
+            "wms_title"  	"rivers layer"
+            "wms_include_items" "all"
+        END
+        TEMPLATE "layer3tmp.html"
+        PROJECTION
+            "init=epsg:4326"
+        END
+        CLASS
+            NAME       "Rivers"
+            STYLE
+                COLOR    0 0 250
+                WIDTH    2
+            END
+        END	
+    END
+################################################################################
+
+    LAYER
+        NAME		 'roads'
+        DATA		 'routes.shp'
+        STATUS              ON
+        TYPE                LINE
+        METADATA
+            "wms_title"  	"road_layer"
+            "wms_include_items" "all"
+        END
+        TEMPLATE "layer4tmp.html"
+        PROJECTION
+            "init=epsg:4326"
+        END
+        CLASSITEM           "road_type"
+        LABELCACHE          on
+        LABELITEM           "label"
+        
+        CLASS
+            NAME       "primary"
+            EXPRESSION 'primary'
+            STYLE
+                COLOR    209 66 0
+                WIDTH    4.5
+            END
+            STYLE
+                COLOR	255 235 161
+                WIDTH	4
+            END 
+
+        END
+
+	CLASS
+            NAME "secondary"
+            EXPRESSION "secondary"
+            STYLE
+                COLOR	100 100 100
+                WIDTH	3.5
+            END
+            STYLE
+                COLOR	250 250 250
+                WIDTH	3
+            END
+        END
+
+        CLASS
+            NAME "tertiary"
+            EXPRESSION "tertiary"
+            STYLE
+                COLOR	100 100 100
+                WIDTH	3.5
+            END
+            STYLE
+                COLOR	250 250 250
+                WIDTH	3
+            END
+        END
+
+        CLASS
+            NAME "railway"
+            EXPRESSION "railway"
+            STYLE
+                COLOR	0 0 0
+                WIDTH	2.5
+            END
+            STYLE
+                COLOR 0 0 0
+                SYMBOL "vertline"
+                SIZE 5
+                ANGLE 0
+                GAP -50
+            END
+            STYLE
+                COLOR 0 0 0
+                SYMBOL "vertline"
+                SIZE 5
+                ANGLE 180
+                GAP -50
+            END 
+        END
+
+        CLASS
+            NAME "residental"
+            EXPRESSION "residental"
+            STYLE
+                COLOR	100 100 100
+                WIDTH	2
+            END
+            STYLE
+                COLOR	250 250 250
+                WIDTH	1.5
+            END
+        END
+
+        CLASS
+            NAME "other"
+            EXPRESSION "other"
+            STYLE
+                COLOR	100 100 100
+                WIDTH	2
+            END
+            STYLE
+                COLOR	250 250 250
+                WIDTH	1.5
+            END
+        END
+
+        CLASS
+            NAME "airport"
+            EXPRESSION "airport"
+            STYLE
+                COLOR	100 100 100
+                WIDTH	2
+            END
+            STYLE
+                COLOR	250 250 250
+                WIDTH	1.5
+            END
+        END
+
+        CLASS
+            NAME "dirt road"
+            EXPRESSION "dirt road"
+            STYLE
+                COLOR	100 100 100
+                WIDTH	2
+
+            END
+            STYLE
+                COLOR	250 250 250
+                WIDTH	1.5
+            END
+        END
+    END 
+END
