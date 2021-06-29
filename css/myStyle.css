@@ -204,7 +204,7 @@ input[type='checkbox']:checked {
     width: 104px;
     height: 104px;
     -webkit-appearance: none;
-    background-image: url("../img/landuse.png");
+    background-image: url("../img/layers.png");
     background-size: 95%;
     background-position: center center;
     background-repeat: no-repeat;
