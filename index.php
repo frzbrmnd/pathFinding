@@ -81,7 +81,7 @@
         <script src="./js/routing.js"></script>
         <script src="./js/identification.js"></script>
         <script src="./js/search.js"></script>
-        <script src="./js/clearMap.js"></script>
+        <script src="./js/clearMap.js"></script> 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     </body>
 </html>

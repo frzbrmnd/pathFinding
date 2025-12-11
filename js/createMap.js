@@ -1,5 +1,5 @@
 var mainSource = new ol.source.ImageWMS({
-    url: 'http://localhost:8080/cgi-bin/mapserv.exe?map=/ms4w/Apache/htdocs/pathFinding/main.map',
+    url: 'http://path.com/cgi-bin/mapserv?map=/var/www/path.com/public_html/main.map',
     params: {'LAYERS': 'earth'},
     crossOrigin: 'anonymous',
 });
@@ -21,6 +21,7 @@ var bg = new ol.layer.Image({
 var view = new ol.View({
     projection: 'EPSG:4326',
     center: [51.042,35],
+    //center: [5658666,4160751],
     zoom: 11.35,
     minZoom: 10,
     maxZoom: 13,

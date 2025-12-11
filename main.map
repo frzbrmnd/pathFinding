@@ -1,6 +1,5 @@
 MAP
     NAME           "my_map"     
-    CONFIG         "PROJ_LIB" "C:/ms4w/proj/nad"
     DEBUG          5   
     UNITS          dd
     IMAGETYPE      PNG
@@ -29,11 +28,11 @@ MAP
 ################################################################################
     WEB
         TEMPLATE "MST.html"
-        IMAGEPATH "/ms4w/tmp/ms_tmp/"
+        IMAGEPATH "/tmp/ms_tmp/"
         IMAGEURL "/ms_tmp/"
         METADATA
             "wms_title" "My MAP"
-            "wms_onlineresource" "http://localhost:8080/cgi-bin/mapserv.exe?"
+            "wms_onlineresource" "http://localhost/cgi-bin/mapserv?"
             "WMS_ENABLE_REQUEST" "*"
             "WMS_FEATURE_INFO_MIME_TYPE" "text/html"
             #"WMS_INFO_FORMAT" "text/html"
@@ -48,15 +47,17 @@ MAP
 	DATA		 'earth.tif'
 	STATUS       DEFAULT
 	TYPE         RASTER
-        METADATA
-            "wms_title"  	"background aerial image"
-            "wms_include_items" "all"
-        END
-        TEMPLATE "layer1tmp.html"
+    METADATA
+        "wms_title"  	"background aerial image"
+        "wms_include_items" "all"
+    END
+    TEMPLATE "layer1tmp.html"
 	PROJECTION
-            "init=epsg:4326"
+        "init=epsg:4326"
 	END 
-    END 
+    END
+    
+
 
 ################################################################################
     LAYER
@@ -65,7 +66,7 @@ MAP
         STATUS       ON
         TYPE         POLYGON
         PROJECTION
-            "init=epsg:4326"
+           "init=epsg:4326"
         END
         CLASSITEM    "USEFARSI"
         METADATA

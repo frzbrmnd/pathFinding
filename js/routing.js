@@ -31,7 +31,7 @@ document.getElementById("startRouting").addEventListener("click", function(){
     var destination = document.getElementById("destination").value.split(",");
     $.ajax({
         type : "POST",
-        url : "../../cgi-bin/test.py",
+        url : "/pycgi/test.py",
         data: {
             startLat: start[0],
             startLng: start[1],
@@ -44,7 +44,9 @@ document.getElementById("startRouting").addEventListener("click", function(){
             
         },
         success : function(response) {
+            console.log(response);
             pathSource.addFeatures(new ol.format.GeoJSON().readFeatures(response));
+            //pathSource.addFeatures(response);
         },
         error: function(xhr, status, error) { 
             var errorMessage = xhr.status + ': ' + xhr.statusText
